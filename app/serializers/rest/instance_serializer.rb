@@ -3,7 +3,7 @@
 class REST::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :uri, :title, :short_description, :description, :email,
+  attributes :uri, :title, :short_description, :description, :email, :maxchar,
              :version, :urls, :stats, :thumbnail,
              :languages, :registrations, :approval_required, :invites_enabled
 
@@ -31,6 +31,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     Setting.site_contact_email
   end
 
+  def maxchar
+    11270
+  end
+
   def version
     Mastodon::Version.to_s
   end
@@ -41,9 +45,9 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def stats
     {
-      user_count: instance_presenter.user_count,
-      status_count: instance_presenter.status_count,
-      domain_count: instance_presenter.domain_count,
+      user_count: 1,#instance_presenter.user_count,
+      status_count: 100,#instance_presenter.status_count,
+      domain_count: 1,#instance_presenter.domain_count,
     }
   end
 

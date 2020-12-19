@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def flags
-      'rc1 ~B612~Kira!'
+      'rc2 ~B612~Kira!'
     end
 
     def suffix
